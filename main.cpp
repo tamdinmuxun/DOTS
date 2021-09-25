@@ -44,7 +44,7 @@ Point Point::operator/(int k) const {
 }
 
 int Point::operator*(Point b) const {
-    return x * b.Gety() + y * b.Getx()  ;
+    return x * b.Getx() + y * b.Gety()  ;
 }
 
 int Point::operator^(Point b) const {
