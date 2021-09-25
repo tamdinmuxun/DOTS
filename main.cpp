@@ -87,6 +87,12 @@ istream &operator>>(istream & in, Point & a){
 
 
 int main() {
+    cout << "Enter vector\n.......";
+    Point v;
+    cin >> v;
+    cout << "Enter second vector\n.......";
+    Point v1;
+    cin >> v1;
 
     return 0;
 }
