@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <string>
 
 using namespace std;
 
@@ -56,7 +57,7 @@ int Point::sqrlen() const {
 }
 
 double Point::angle(Point b) const {
-    return asin((*this ^ b) / (sqrt(this->sqrlen() * b.sqrlen())));
+    return acos((*this * b) / (sqrt(this->sqrlen() * b.sqrlen())));
 }
 
 bool Point::operator==(Point b) const {
@@ -87,38 +88,46 @@ istream &operator>>(istream & in, Point & a){
 
 
 int main() {
-    cout << "Enter vector\n.......";
+    //cout << "Enter vector\n.......";
     Point v;
-    cin >> v;
-    cout << "your vector v " << v << " squared length is " << v.sqrlen() << '\n';
-    cout << "Enter second vector\n.......";
+    //cin >> v;
+    //cout << "your vector v " << v << " squared length is " << v.sqrlen() << '\n';
+    //cout << "Enter second vector\n.......";
     Point v1;
-    cin >> v1;
-    cout << "your vector v1 " << v1 << " squared length is " << v1.sqrlen() << '\n';
-    if (v1 == v){
-        cout << "your vectors are equal\n";
-    }else{
-        cout << "your vectors aren't equal\n";
+    //cin >> v1;
+    //cout << "your vector v1 " << v1 << " squared length is " << v1.sqrlen() << '\n';
+    while (true) {
+        cout << "choose command:\nenter vector1\nenter vector2\nGetx 1\nGety 1\nGetx 2\nGety 2\nSetx 1\nSety 1\nSetx 2\nSety 2\nsum\nsub\nmultiply by int\ndivide by int\nscalar\nkosoe\nangle\nsquared length\nequal\nexit\nBy default vectors are (0, 0)\n";
+        string c;
+        cin >> c;
+        if (c == "exit"){
+            break;
+        }else if (c == "equal") {
+            if (v1 == v) {
+                cout << "your vectors are equal\n";
+            } else {
+                cout << "your vectors aren't equal\n";
+            }
+        }else if (c == "sum")
+        Point sum = v + v1;
+        cout << "v + v1 = " << sum << '\n';
+        Point sub = v - v1;
+        cout << "v - v1 = " << sub << endl;
+        int scalar = v * v1;
+        cout << "(v, v1) = " << scalar << endl;
+        int kos = v ^v1;
+        cout << "<v, v1> = " << kos << endl;
+        double ang = v.angle(v1);
+        cout << "angle between v and v1 is " << ang << endl;
+        cout << "choose a number to multiply vector v with it\n";
+        int k;
+        cin >> k;
+        Point mul = v * k;
+        cout << "v * k = " << mul << endl;
+        cout << "choose a number to divide vector v1 with it\n";
+        cin >> k;
+        Point div = v / k;
+        cout << "v / k = " << div << endl;
     }
-    Point sum = v + v1;
-    cout << "v + v1 = " << sum << '\n';
-    Point sub = v - v1;
-    cout << "v - v1 = " << sub << endl;
-    int scalar = v * v1;
-    cout << "(v, v1) = " << scalar << endl;
-    int kos = v ^ v1;
-    cout << "<v, v1> = " << kos << endl;
-    cout << "choose a number to multiply vector v with it\n";
-    int k;
-    cin >> k;
-    Point mul = v * k;
-    cout << "v * k = " << mul << endl;
-    cout << "choose a number to divide vector v1 with it\n";
-    cin >> k;
-    Point div = v / k;
-    cout << "v / k = " << div << endl;
-    double ang = v.angle(v1);
-    cout << "angle between v and v1 is " << ang << endl;
-
     return 0;
 }
