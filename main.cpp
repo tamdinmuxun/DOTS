@@ -27,7 +27,7 @@ public:
 };
 
 Point Point::operator+(Point b) const {
-    Point res = Point(max(x, b.Getx()), max(y, b.Gety()));
+    Point res = Point(x + b.Getx(), y + b.Gety());
     return res;
 }
 
@@ -90,9 +90,35 @@ int main() {
     cout << "Enter vector\n.......";
     Point v;
     cin >> v;
+    cout << "your vector v " << v << " squared length is " << v.sqrlen() << '\n';
     cout << "Enter second vector\n.......";
     Point v1;
     cin >> v1;
+    cout << "your vector v1 " << v1 << " squared length is " << v1.sqrlen() << '\n';
+    if (v1 == v){
+        cout << "your vectors are equal\n";
+    }else{
+        cout << "your vectors aren't equal\n";
+    }
+    Point sum = v + v1;
+    cout << "v + v1 = " << sum << '\n';
+    Point sub = v - v1;
+    cout << "v - v1 = " << sub << endl;
+    int scalar = v * v1;
+    cout << "(v, v1) = " << scalar << endl;
+    int kos = v ^ v1;
+    cout << "<v, v1> = " << kos << endl;
+    cout << "choose a number to multiply vector v with it\n";
+    int k;
+    cin >> k;
+    Point mul = v * k;
+    cout << "v * k = " << mul << endl;
+    cout << "choose a number to divide vector v1 with it\n";
+    cin >> k;
+    Point div = v / k;
+    cout << "v / k = " << div << endl;
+    double ang = v.angle(v1);
+    cout << "angle between v and v1 is " << ang << endl;
 
     return 0;
 }
