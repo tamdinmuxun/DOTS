@@ -97,10 +97,10 @@ int main() {
     //cin >> v1;
     //cout << "your vector v1 " << v1 << " squared length is " << v1.sqrlen() << '\n';
     while (true) {
-        cout << "choose command:\nenter vector1\nenter vector2\nGetx 1\nGety 1\nGetx 2\nGety 2\nSetx 1\nSety 1\nSetx 2\nSety 2\nsum\nsub\nmultiply by int\ndivide by int\nscalar\nkosoe\nangle\nsquared length\nequal\nexit\nBy default vectors are (0, 0)\n";
+        cout << "choose command:\nenter vector1\nenter vector2\nGetx\nGety\nSetx\nSety\nsum\nsub\nmultiply by int\ndivide by int\nscalar\nkosoe\nangle\nsquared length\nequal\nexit\n#By default vectors are (0, 0)\n";
         string c;
-        cin >> c;
-        if (c == "exit"){
+        getline(cin, c);
+        if (c == "exit") {
             break;
         }else if (c == "equal") {
             if (v1 == v) {
@@ -108,26 +108,88 @@ int main() {
             } else {
                 cout << "your vectors aren't equal\n";
             }
-        }else if (c == "sum")
-        Point sum = v + v1;
-        cout << "v + v1 = " << sum << '\n';
-        Point sub = v - v1;
-        cout << "v - v1 = " << sub << endl;
-        int scalar = v * v1;
-        cout << "(v, v1) = " << scalar << endl;
-        int kos = v ^v1;
-        cout << "<v, v1> = " << kos << endl;
-        double ang = v.angle(v1);
-        cout << "angle between v and v1 is " << ang << endl;
-        cout << "choose a number to multiply vector v with it\n";
-        int k;
-        cin >> k;
-        Point mul = v * k;
-        cout << "v * k = " << mul << endl;
-        cout << "choose a number to divide vector v1 with it\n";
-        cin >> k;
-        Point div = v / k;
-        cout << "v / k = " << div << endl;
+        }else if (c == "sum") {
+            Point sum = v + v1;
+            cout << "v + v1 = " << sum << '\n';
+        }else if (c == "sub") {
+            Point sub = v - v1;
+            cout << "v - v1 = " << sub << endl;
+        }
+        else if (c == "scalar") {
+            int scalar = v * v1;
+            cout << "(v, v1) = " << scalar << endl;
+        }else if (c == "kosoe") {
+            int kos = v ^v1;
+            cout << "<v, v1> = " << kos << endl;
+        }else if (c == "angle") {
+            double ang = v.angle(v1);
+            cout << "angle between v and v1 is " << ang << endl;
+        }else if (c == "multiply by int") {
+            cout << "choose a number to multiply vector v with it\n";
+            int k;
+            cin >> k;
+            Point mul = v * k;
+            cout << "v * k = " << mul << endl;
+        }else if (c == "divide by int") {
+            int k;
+            cout << "choose a number to divide vector v1 with it\n";
+            cin >> k;
+            Point div = v / k;
+            cout << "v / k = " << div << endl;
+        }else if (c == "enter vector1"){
+            cin >> v;
+        }else if (c == "enter vector2"){
+            cin >> v1;
+        }else if (c == "Getx"){
+            cout << "vector1 or vector2?\n";
+            string ans;
+            cin >> ans;
+            if (ans == "vector1"){
+                cout << v.Getx() << endl;
+            }else if (ans == "vector2"){
+                cout << v1.Getx() << endl;
+            }
+        }else if (c == "Gety"){
+            cout << "vector1 or vector2?\n";
+            string ans;
+            cin >> ans;
+            if (ans == "vector1"){
+                cout << v.Gety() << endl;
+            }else if (ans == "vector2"){
+                cout << v1.Gety() << endl;
+            }
+        }else if (c == "Setx"){
+            cout << "vector1 or vector2 and what number?\n";
+            string ans;
+            int k;
+            cin >> ans >> k;
+            if (ans == "vector1"){
+                v.Setx(k);
+            }else if (ans == "vector2"){
+                v1.Setx(k);
+            }
+        }else if (c == "Sety"){
+            cout << "vector1 or vector2 and what number?\n";
+            string ans;
+            int k;
+            cin >> ans >> k;
+            if (ans == "vector1"){
+                v.Sety(k);
+            }else if (ans == "vector2"){
+                v1.Sety(k);
+            }
+        }else if (c == "squared length"){
+            cout << "vector 1 or 2?\n";
+            int k;
+            cin >> k;
+            if (k == 1){
+                cout << v.sqrlen() << endl;
+            }else{
+                cout << v1.sqrlen() << endl;
+            }
+        }else {
+            cout << "ERROR! No such a command\n";
+        }
     }
     return 0;
 }
