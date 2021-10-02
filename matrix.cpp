@@ -40,6 +40,15 @@ int main(){
             cerr << s << '\n';
         }
     }
+    cout << "do you want to count opredelitel of matrix?\n";
+    cin >> ans;
+    if (ans == "yes"){
+        try {
+            cout << opr(a, 0) << '\n';
+        }catch (char const* s){
+            cerr << s << '\n';
+        }
+    }
     cout << "choose other matrix size\n";
     int k, l;
     cin >> k >> l;
@@ -68,6 +77,15 @@ int main(){
             cin >> k;
             Matrix<int> c = a.pow(k);
             cout << c << '\n';
+        }catch (char const* s){
+            cerr << s << '\n';
+        }
+    }
+    cout << "do you want to count opredelitel of matrix?\n";
+    cin >> ans;
+    if (ans == "yes"){
+        try {
+            cout << opr(a, 0) << '\n';
         }catch (char const* s){
             cerr << s << '\n';
         }

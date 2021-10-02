@@ -104,8 +104,47 @@ Matrix<T> Matrix<T> :: trans(){
     }
     return res;
 }
-
-
+template<typename T>
+long long opr(Matrix<T> &a, int i){
+    long long answer = 0;
+    if (a.size() != a[0].size()){
+        string s = "ERROR! matrix is not squared";
+        char const* c = s.c_str();
+        throw c;
+    }
+    if (a.size() == a[0].size() && a.size() == 1){
+        return a[0][0];
+    }
+    for (int j = 0; j < a[0].size(); j++){
+        Matrix<T> c(a.size() - 1, a[0].size() - 1);
+        for (int k = 0; k < i; k++){
+            for (int u = 0; u < j; u++){
+                c[k][u] = a[k][u];
+            }
+            for (int u = j + 1; u < a[0].size(); u++){
+                c[k][u - 1] = a[k][u];
+            }
+        }
+        for (int k = i + 1; k < a.size(); k++){
+            for (int u = 0; u < j; u++){
+                c[k - 1][u] = a[k][u];
+            }
+            for (int u = j + 1; u < a[0].size(); u++){
+                c[k - 1][u - 1] = a[k][u];
+            }
+        }
+        cout << c;
+        if ((j + i) % 2 == 0){
+            long long temp = opr(c, 0);
+            answer += a[i][j] * temp;
+            cout << temp << '*' << a[i][j] << '=' << temp * a[i][j] << '\n';
+        }else{
+            long long temp = opr(c, 0);
+            answer -= a[i][j] * temp;
+            cout << temp << '*' << a[i][j] << '=' << temp * a[i][j] << '\n';        }
+    }
+    return answer;
+}
 //
 //template<typename T>
 //

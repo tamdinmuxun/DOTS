@@ -22,6 +22,9 @@ public:
         return matr[i];
     }
     Matrix trans();
+    int size(){
+        return n;
+    }
     template<typename Type> friend istream& operator>>(istream&, Matrix<Type>&);
     template<typename Type> friend ostream& operator<<(ostream&, Matrix<Type>&);
 };
