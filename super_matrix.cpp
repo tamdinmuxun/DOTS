@@ -52,7 +52,7 @@ Matrix<T> Matrix<T> :: operator*(int k){
 template<typename T>
 
 Matrix<T> Matrix<T> :: operator * (Matrix<T>& a){
-    if (a.n != m){
+    if (a.size() != m){
         string s = "ERROR! cannot multiply matrix!";
         char const* res = s.c_str();
         throw res;
@@ -141,30 +141,44 @@ long long opr(Matrix<T> &a, int i){
         }else{
             long long temp = opr(c, 0);
             answer -= a[i][j] * temp;
-            cout << temp << '*' << a[i][j] << '=' << temp * a[i][j] << '\n';        }
+            cout << temp << '*' << a[i][j] << '=' << temp * a[i][j] << '\n';
+        }
     }
     return answer;
 }
-//
-//template<typename T>
-//
-//typename Matrix<T>:: istream& operator>>(istream& in, Matrix<T>& a){
-//    for (int i = 0; i < a.n; i++){
-//        for (int j = 0; j < a[0].size(); j++){
-//            in >> a[i][j];
-//        }
-//    }
-//    return in;
-//}
-//template <typename T>
-//
-//Matrix<T> Matrix<T>:: ostream& operator<<(ostream& out, Matrix<T>& b){
-//    for (int i = 0; i < b.n; i++){
-//        for (int j = 0; j < b[0].size(); j++){
-//            out << b[i][j];
-//            out << ' ';
-//        }
-//        out << '\n';
-//    }
-//    return out;
-//}
+
+template<typename T>
+
+vector<T> sum(vector<T>& a, vector<T> &b){
+    if (a.size() != b.size()){
+        throw false;
+    }
+    vector<T> c(a.size());
+    for (int i = 0; i < a.size(); i++){
+        c[i] = a[i] + b[i];
+    }
+    return c;
+}
+template<typename T>
+
+double opr1(Matrix<T> &a){
+    Matrix<T> c(a);
+    for (int i = 0; i < c.size(); i++){
+        for (int k = 0; k <= i; k++) {
+            for (int j = k + 1; j < c.size(); j++) {
+                vector<T> t(c.size(), c[j][k] / c[k][k]);
+                for (int u = 0; u < c.size(); u++) {
+                    t[u] *= c[k][u];
+                }
+                c[j] = sum(c[j], t);
+                //cout << c;
+            }
+        }
+    }
+    double ans = 1;
+    for (int i = 0; i < c.size(); i++)
+    {
+        ans *= c[i][i];
+    }
+    return ans;
+}
