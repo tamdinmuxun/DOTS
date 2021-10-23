@@ -131,7 +131,13 @@ public:
         }
         return k;
     }
-
+    T operator[](int i){
+        auto it = head;
+        for (int k = 0; k < i; k++){
+            it = it->next;
+        }
+        return it->val;
+    }
     template<typename Type> friend ostream& operator<<(ostream& out, list<Type>& a){
         if (a.empty()){
             return out;
@@ -236,6 +242,8 @@ int main(){
 //        cout << a.front()->next << ' ' << (a.front()->next != nullptr ? a.front()->next->val : 0) << endl;
     }
 //    cout << a << endl;
+    cout << a[0] << ' ' << a[1] << ' ' << a[2] << endl;
+
     a = sorting(a);
     cout << a;
 }
