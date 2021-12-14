@@ -82,7 +82,7 @@ vector<Matrix<T>> gauss(Matrix<T> &a){
 
 int main(){
     int n, m;
-    cin >> n >> m;
+    cin >> n >> m; // тут m включая столбец с свободными членами
     Matrix<double> a(n, m);
     cin >> a;
     vector<Matrix<double>> res = gauss(a);
